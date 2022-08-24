@@ -1,0 +1,170 @@
+{% extends 'admintemplates/adminbase.html' %}
+{% load static %}
+{% block css %}
+
+
+{% endblock %}
+
+{% block body %}
+
+<div id="pcoded" class="pcoded">
+<div class="pcoded-overlay-box"></div>
+<div class="pcoded-container navbar-wrapper">
+
+<div class="pcoded-content">
+<div class="pcoded-inner-content">
+
+<div class="main-body">
+<div class="page-wrapper">
+
+<div class="page-header">
+<div class="row align-items-end">
+<div class="col-lg-8">
+<div class="page-header-title">
+<div class="d-inline">
+<h4>Booking</h4>
+<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="page-header-breadcrumb">
+<ul class="breadcrumb-title">
+<li class="breadcrumb-item">
+<a href="index.html"> <i class="feather icon-home"></i> </a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Pages</a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Sample page</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="page-body">
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-header">
+<h5>Booking Full Details</h5>
+<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+</div>
+<div class="card-block">
+<div class="j-wrapper j-wrapper-640">
+<form method="POST" class="j-pro post-form">
+{% csrf_token %}
+
+<div class="j-content">
+
+<div class="j-unit">
+<label class="j-label">Task Title</label>
+<div class="j-input">
+<label class="j-icon-right" for="name">
+<i class="icofont icofont-ui-user"></i>
+</label>
+{{form.title}}
+{{form.errors}}
+</div>
+</div>
+
+
+<div class="j-row">
+<div class="j-span6 j-unit">
+<label class="j-label">Assigned to</label>
+<div class="j-input">
+
+<label class="j-icon-right" for="name">
+<i class="icofont icofont-waiter"></i>
+</label>
+
+
+{{form.assigned_to}}
+</div>
+</div>
+<div class="j-span6 j-unit">
+<label class="j-label">Priority</label>
+<div class="j-input">
+<label class="j-icon-right" for="phone">
+<i class="icofont icofont-phone"></i>
+</label>
+{{form.priority}}
+
+</div>
+</div>
+</div>
+
+<div class="j-divider j-gap-bottom-25"></div>
+
+<div class="j-row">
+<div class="j-span6 j-unit">
+<label class="j-label">Status of task</label>
+<div class="j-input">
+ <label class="j-icon-right" for="adults">
+<i class="icofont icofont-waiter"></i>
+</label>
+{{form.status}}
+<span class="j-tooltip j-tooltip-right-top">Status of task</span>
+</div>
+</div>
+<div class="j-span6 j-unit">
+<label class="j-label">Due date</label>
+<div class="j-input">
+<label class="j-icon-right" for="date_from">
+<i class="icofont icofont-ui-calendar"></i>
+</label>
+{{form.due_date}}
+</div>
+
+</div>
+</div>
+
+
+
+
+<div class="j-divider j-gap-bottom-25"></div>
+
+<div class="j-unit">
+<label class="j-label">Task Description</label>
+<div class="j-input">
+{{form.content}}
+</div>
+</div>
+
+
+<!-- <div class="j-response"></div> -->
+
+</div>
+
+<div class="j-footer">
+<button type="submit" class="btn btn-primary">Create</button>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="styleSelector">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock %}

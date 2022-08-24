@@ -1,0 +1,45 @@
+
+class ConsultantDocumentCreateView(CreateView):
+    template_name = 'consultanttemplates/consultantdocumentcreate.html'
+    form_class = DocumentForm
+    success_url = reverse_lazy('cmsapp:consultantpanel')
+
+    # def post(self, request, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['formset'] = DocumentFormSet
+    # return context
+
+    # def post(self, request, *args, **kwargs):
+    #     form = self.form_class(request.POST)
+    #     if form.is_valid():
+    #        form = DocumentForm()
+    # return HttpResponseRedirect('/')
+
+    def get_context_data(self, **kwargs):
+        context = super(ConsultantDocumentCreateView,
+                        self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['formset'] = DocumentFormSet(self.request.POST)
+            context['formset'].full_clean()
+
+            # for form in context:
+            #     print(form)
+            # print(context)
+        else:
+            context['formset'] = DocumentFormSet()
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        print(context)
+        formset = context['formset']
+        # with transaction.atomic():
+        # self.object = form.save()
+        # formset.instance = self.object
+        # print(formset)
+        # if formset.is_valid():
+        for form in formset:
+            # form.instance = self.object
+            print(form)
+            form.save()
+        return super().form_valid(form)

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="card-block" style="margin:20px 300px; margin-right: 100px;">
+	<form action="{% url 'cmsapp:universitycreate' %}" method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+		<button type="submit">Create</button>
+	</form>
+	</div>
+{% endblock %}

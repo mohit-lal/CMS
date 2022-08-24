@@ -1,0 +1,43 @@
+{% extends 'receptionisttemplates/receptionistbase.html' %}
+{% load static %}
+{% block active6 %}active{% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="dt-responsive table-responsive">
+<table id="datatables" class="table table-striped table-bordered nowrap" >
+<thead>
+<tr>
+<th>user</th>
+<th>Name</th>
+<th>Address</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Source</th>
+<th>Visited Date</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+    {% for visitor in receptionistvisitorlist %}
+<tr>
+<td>{{visitor.user}}</td>
+<td>{{visitor.name}}</td>
+<td>{{visitor.address}}</td>
+<td>{{visitor.phone}}</td>
+<td>{{visitor.email}}</td>
+<td>{{visitor.source}}</td>
+<td>{{visitor.visited_date}}</td>
+<td>{{visitor.purpose}}</td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block js %}
+{% endblock %}
+

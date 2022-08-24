@@ -1,0 +1,71 @@
+{% extends 'admintemplates/adminbase.html' %}
+{% load static %}
+{% block active8 %}active{% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+
+<div class="col-sm-12">
+<div class="card">
+<div class="card-header col-md-10">
+<h5>Task List</h5>
+<button class="btn btn-out-dotted btn-info btn-square pull-right" ><a href="{% url 'cmsapp:admintaskcreate' %}">Add task</a></button>
+</div>
+<div class="card-block task-list">
+<div class="table-responsive">
+<table id="datatables" class="table dt-responsive task-list-table table-striped table-bordered nowrap">
+<thead>
+<tr>
+<th>S.N.</th>
+<th>Task title</th>
+<th>Task Description</th>
+<th>Status</th>
+<th>Priority</th>
+<th>Due Date</th>
+<th>Assigned to</th>
+<th>Action</th>
+
+</tr>
+</thead>
+<tfoot>
+        <tr>
+            <th>S.N.</th>
+			<th>Task title</th>
+			<th>Task Description</th>
+			<th>Status</th>
+			<th>Priority</th>
+			<th>Due Date</th>
+			<th>Assigned to</th>
+			<th>Action</th>
+			
+			</tr>
+    </tfoot>
+<tbody class="task-page">
+{% for task in tasklist %}
+<tr>
+<td>{{forloop.counter}}</td>
+<td>{{task.title}}</td>
+<td>{{task.content}}</td>
+<td>{{task.status}}</td>
+<td>{{task.priority}}</td>
+<td>{{task.due_date}}</td>
+<td>{% for user in task.assigned_to.all %}
+{{user.username}} 
+{% endfor %}</td>
+<td><a href="{% url 'cmsapp:admintaskdelete' task.id %}" class="btn btn-link btn-info btn-just-icon delete">
+<i class="material-icons">delete</i>
+</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+{% block js %}
+
+
+{% endblock %}

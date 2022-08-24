@@ -1,0 +1,401 @@
+if user is not None :
+            login(self.request, user)
+            users_in_group = Group.objects.get(name="Receptionist").user_set.all()
+            if users_in_group.filter(user=user).exists():
+                return HttpResponseRedirect(reverse_lazy('cmsapp:receptionistpanel'))
+
+def clean_new_password(self):
+        # cleaned_data = super(PasswordChangeForm, self).clean()
+        current_password = self.cleaned_data.get('current_password')
+        new_password = self.cleaned_data.get('new_password')
+        confirm_new_password = self.cleaned_data.get('confirm_new_password')
+        # if new_password != confirm_new_password:
+        #     raise forms.ValidationError(
+        #         "new password and confirm password doesnot match"
+        #     )
+        return confirm_new_password
+
+
+    def clean(self):
+        cleaned_data = super(PasswordChangeForm, self).clean()
+        new_password = cleaned_data.get("new_password")
+        confirm_new_password = cleaned_data.get("confirm_new_password")
+        # if new_password != confirm_new_password:
+        #     raise forms.ValidationError("tero tauko bigryo password")
+        # return confirm_new_password
+
+# front end ko vura haru ko lagi
+        # if current_password == form.instance.user.password2:
+
+
+
+
+def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password2']
+        user = User.objects.create_user(username, "", password)
+        group = Group.objects.get(name="Lead")
+        group.user_set.add(user)
+        form.instance.user = user
+        lead = form.save()
+        documents = request.FILES.getlist('documents')
+        for file in documents:
+            document = Document.objects.Create(documents=file, lead=lead)
+            print(documents + ".........................")
+        return super().form_valid(form)
+
+
+
+
+    def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password2']
+        user = User.objects.create_user(username, "", password)
+        group = Group.objects.get(name="Lead")
+        group.user_set.add(user)
+        form.instance.user = user
+        lead = form.save(commit=False)
+        documents = request.FILES.getlist('documents')
+        for file in documents:
+            document = Document.objects.create(documents=lead, file=file)
+        return self.form_valid(form)
+<<<<<<< HEAD
+=======
+
+
+
+    def post(self, request, *args, **kwargs):
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        documents = request.FILES.getlist('documents')
+        lead = form.save()
+        if form.is_valid():
+            for f in documents:
+                document = Document.objects.create(file=f, lead=lead)
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+
+def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password2']
+        user = User.objects.create_user(username, "", password)
+        group = Group.objects.get(name="Lead")
+        group.user_set.add(user)
+        form.instance.user = user
+        lead = form.save()
+        documents = request.FILES.getlist('documents')
+        for file in documents:
+            document = Document.objects.create(file=file, lead=lead)
+        return self.form_valid(form)
+
+def post(self, request, *args, **kwargs):
+        if request.method == "POST":
+            form = LeadForm(request.POST)
+            if form.is_valid():
+                form_class = self.get_form_class()
+                form = self.get_form(form_class)
+                username = request.POST.get['username']
+                password = request.POST.get['password2']
+                user = User.objects.create_user(username, "", password)
+                group = Group.objects.get(name="Lead")
+                group.user_set.add(user)
+                form.instance.user = user
+                lead = form.save()
+                documents = request.FILES.getlist('documents')
+                for f in documents:
+                    document = Document.objects.create(file=f, lead=lead)
+                return self.form_valid(form)
+            else:
+                return self.form_invalid(form)
+>>>>>>> 2fb2450a93bce918f3f39ee8061c107151265b34
+
+{% extends 'base.html' %}
+{% block body %}
+    <form method="POST" style="margin:20px 500px;">
+        {% csrf_token %}
+        {{form.as_p}}
+    <button> Post </button>
+    </form>
+{% endblock %}
+
+<a href="{% url 'cmsapp:taskupdate' task.slug %}" class="btn btn-link btn-info btn-just-icon edit"> 
+<i class="material-icons">update</i>
+</a>
+<a data-remote="{% url 'cmsapp:taskdelete' task.slug %}" data-toggle="modal" data-target="#clinic-modal" href="{% url 'cmsapp:taskdelete' task.slug %}" class="btn btn-link btn-info btn-just-icon delete">
+<i class="material-icons">delete</i>
+</a>
+
+
+
+<div class="page-header">
+<div class="row align-items-end">
+<div class="col-lg-8">
+<div class="page-header-title">
+<div class="d-inline">
+<h4>Booking</h4>
+<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="page-header-breadcrumb">
+<ul class="breadcrumb-title">
+<li class="breadcrumb-item">
+<a href="index.html"> <i class="feather icon-home"></i> </a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Pages</a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Sample page</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="page-body">
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-header">
+<h5>Booking Full Details</h5>
+<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+</div>
+<div class="card-block">
+<div class="j-wrapper j-wrapper-640">
+<form method="POST" class="j-pro post-form">
+{% csrf_token %}
+
+<div class="j-content">
+
+<div class="j-unit">
+<label class="j-label">Task Title</label>
+<div class="j-input">
+<label class="j-icon-right" for="name">
+<i class="icofont icofont-ui-user"></i>
+</label>
+{{form.title}}
+{{form.errors}}
+</div>
+</div>
+
+
+<div class="j-row">
+<div class="j-span6 j-unit">
+<label class="j-label">Assigned to</label>
+<div class="j-input">
+
+<label class="j-icon-right" for="name">
+<i class="icofont icofont-waiter"></i>
+</label>
+
+
+{{form.assigned_to}}
+</div>
+</div>
+<div class="j-span6 j-unit">
+<label class="j-label">Priority</label>
+<div class="j-input">
+<label class="j-icon-right" for="phone">
+<i class="icofont icofont-phone"></i>
+</label>
+{{form.priority}}
+
+</div>
+</div>
+</div>
+
+<div class="j-divider j-gap-bottom-25"></div>
+
+<div class="j-row">
+<div class="j-span6 j-unit">
+<label class="j-label">Status of task</label>
+<div class="j-input">
+ <label class="j-icon-right" for="adults">
+<i class="icofont icofont-waiter"></i>
+</label>
+{{form.status}}
+<span class="j-tooltip j-tooltip-right-top">Status of task</span>
+</div>
+</div>
+<div class="j-span6 j-unit">
+<label class="j-label">Due date</label>
+<div class="j-input">
+<label class="j-icon-right" for="date_from">
+<i class="icofont icofont-ui-calendar"></i>
+</label>
+{{form.due_date}}
+</div>
+
+</div>
+</div>
+
+
+
+
+<div class="j-divider j-gap-bottom-25"></div>
+
+<div class="j-unit">
+<label class="j-label">Task Description</label>
+<div class="j-input">
+{{form.content}}
+</div>
+</div>
+
+
+<!-- <div class="j-response"></div> -->
+
+</div>
+
+<div class="j-footer">
+<button type="submit" class="btn btn-primary">Create</button>
+</div>
+
+
+
+<<<<<<< HEAD
+
+    # # adminpanel detail views
+
+    # path('admin/<int:pk>/detail/',
+    #      AdminDetailView.as_view(), name='admindetail'),
+    # path('adminconsultant/<int:pk>/detail/',
+    #      AdminConsultantDetailView.as_view(), name='adminconsultantdetail'),
+    # path('adminreceptionist/<int:pk>/detail/',
+    #      AdminReceptionistDetailView.as_view(), name='adminreceptionistdetail'),
+    # path('student/<int:pk>/detail/',
+    #      AdminStudentDetailView.as_view(), name='adminstudentdetail'),
+    # path('adminlead/<int:pk>/detail/',
+    #      AdminLeadDetailView.as_view(), name='adminleaddetail'),
+    # path('adminteacher/<int:pk>/detail/',
+    #      AdminTeacherDetailView.as_view(), name='adminteacherdetail'),
+
+
+
+
+# admin panel detail views
+
+# class AdminConsultantDetailView(DetailView):
+#     template_name = 'admintemplates/adminconsultantdetail.html'
+#     model = Consultant
+#     context_object_name = 'adminconsultantdetail'
+
+
+# class AdminReceptionistDetailView(DetailView):
+#     template_name = 'admintemplates/adminreceptionistdetail.html'
+#     model = Receptionist
+#     context_object_name = 'adminreceptionistdetail'
+
+
+# class AdminStudentDetailView(DetailView):
+#     template_name = 'admintemplates/adminstudentdetail.html'
+#     model = Student
+#     context_object_name = 'adminstudentdetail'
+
+
+# class AdminLeadDetailView(DetailView):
+#     template_name = 'admintemplates/adminleaddetail.html'
+#     model = Lead
+#     context_object_name = 'adminleaddetail'
+
+
+# class AdminTeacherDetailView(DetailView):
+#     template_name = 'admintemplates/adminteacherdetail.html'
+#     model = Teacher
+#     context_object_name = 'adminteacherdetail'
+
+
+
+
+    path('student/list/', StudentListView.as_view(), name='studentlist'),
+    path('teacher/list/', TeacherListView.as_view(), name='teacherlist'),
+    path('reception/list/', ReceptionListView.as_view(), name='receptionlist'),
+    path('lead/list/', LeadListView.as_view(), name='leadlist'),
+    path('consultant/list/', ConsultantListView.as_view(), name='consultantlist'),
+    path('admin/list/', AdminListView.as_view(), name='adminlist'),
+    path('visitor/list/', VisitorListView.as_view(), name='visitorlist'),
+    path('admin/<int:pk>/detail/',
+         AdminDetailView.as_view(), name='admindetail'),
+    path('consultant/<int:pk>/detail/',
+         ConsultantDetailView.as_view(), name='consultantdetail'),
+    path('reception/<int:pk>/detail/',
+         ReceptionDetailView.as_view(), name='receptionistdetail'),
+
+=======
+            # 'university': forms.ModelChoiceField(queryset=University.objects.filter(course)),
+>>>>>>> 2eddfaacc74144e914dbec4ebb6f8e4be028eeac
+
+
+
+
+
+
+class AdminMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user.groups.filter(name='Admin').exists():
+            return redirect('cmsapp:adminpanel')
+        else:
+            return HttpResponse(reverse_lazy('cmsapp:login'))
+        return super(AdminMixin, self).dispatch(request, *args, **kwargs)
+
+
+class ReceptionistMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user.groups.filter(name=['Receptionist']).exists():
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER','/'))
+        else:
+            return HttpResponseRedirect(reverse_lazy('cmsapp:login'))
+        return super(ReceptionistMixin, self).dispatch(request, *args, **kwargs)
+
+
+class AdminMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            print(request.user)
+        if request.user.groups.filter(name='Admin').exists():
+            print(request.user.groups.get())
+            return HttpResponseRedirect(reverse_lazy('cmsapp:adminpanel'))
+        else:
+            return HttpResponse(reverse_lazy('cmsapp:login'))
+        return super(AdminMixin, self).dispatch(request, *args, **kwargs)
+
+
+
+
+
+context['feedlist'] = Feed.objects.all()
+
+
+action= "{% url 'cmsapp:feedcreate' %}"
+
+
+
+
+def get(self, request):
+        password = User.objects.filter(password=request.user.password)
+        user = User.objects.filter(password=request.user.name)
+        print(user)
+        return password
+
+    def clean(self):
+        passw = self.get('password')
+        cleaned_data = super(PasswordChangeForm, self).clean()
+        current_password = cleaned_data.get("current_password")
+        if passw == current_password:
+            new_password = cleaned_data.get("new_password")
+            confirm_new_password = cleaned_data.get("confirm_new_password")
+            if new_password != confirm_new_password:
+                raise forms.ValidationError(
+                    "New password and confirm new password didn't match")
+            return confirm_new_password
+        else:
+            raise forms.ValidationError("current password error")
+        return
+
+
+
+#Modal Delete 
+<a data-remote="{% url 'cmsapp:admintaskdelete' task.id %}" data-toggle="modal" data-target="#clinic-modal" href="{% url 'cmsapp:admintaskdelete' task.id %}" class="btn btn-link btn-info btn-just-icon delete">

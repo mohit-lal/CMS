@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<h1 style="text-align: center;">Hello welcome to Consultancy Management System.</h1>
+<h2><a href="{% url 'cmsapp:studentcreate' %}">Student Create</a><br><br>
+<a href="{% url 'cmsapp:teachercreate' %}">Teacher Create</a><br><br>
+<a href="{% url 'cmsapp:consultantcreate' %}">Consultant Create</a><br><br>
+<a href="{% url 'cmsapp:receptionistcreate' %}">Receptionist Create</a><br><br>
+<a href="{% url 'cmsapp:admincreate' %}">Admin Create</a><br><br>
+<a href="{% url 'cmsapp:login' %}">Login</a><br><br>
+</h2>
+
+{% endblock %}

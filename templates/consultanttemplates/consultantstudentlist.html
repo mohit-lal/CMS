@@ -1,0 +1,45 @@
+{% extends 'consultanttemplates/consultantbase.html' %}
+{% load static %}
+{% block active5 %}active{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block body %}
+<div class="card-block">
+<div class="dt-responsive table-responsive">
+<table id="datatables" class="table table-striped table-bordered nowrap" >
+<thead>
+<tr>
+<th>user</th>
+<th>name</th>
+<th>Address</th>
+<th>Phone</th>
+<th>Language Course</th>
+<th>Assigned to</th>
+
+
+</tr>
+</thead>
+<tbody>
+	{% for student in consultantstudentlist %}
+<tr>
+<td>{{student.user}}</td>
+<td><a href="{% url 'cmsapp:consultantstudentdetail' consultant.id %}">{{student.name}}</a></td>
+<td>{{student.address}}</td>
+<td>{{student.phone}}</td>
+<td>{{student.language_course}}</td>
+<td>{{student.assigned_to}}</td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+{% endblock %}
+{% block js %}
+
+{% endblock %}
+
+	

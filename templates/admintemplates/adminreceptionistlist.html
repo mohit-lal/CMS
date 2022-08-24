@@ -1,0 +1,51 @@
+{% extends 'admintemplates/adminbase.html' %}
+{% load static %}
+{% block active5 %}active{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block body %}
+<button class="btn btn-out-dotted btn-info btn-square pull-right" ><a href="{% url 'cmsapp:adminreceptionistregistration' %}">Add Receptionist</a></button>
+<div class="dt-responsive table-responsive">
+<table id="datatables" class="table table-striped table-bordered nowrap" >
+<thead>
+<tr>
+<th>S.N</th>
+<th>user</th>
+<th>Name</th>
+<th>Address</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Actions</th>
+
+
+
+</tr>
+</thead>
+<tbody>
+    {% for receptionist in adminreceptionistlist %}
+<tr>
+<td>{{forloop.counter}}</td>
+<td>{{receptionist.user}}</td>
+<td><a href="{% url 'cmsapp:adminreceptionistdetail' receptionist.id %}">{{receptionist.name}}</a></td>
+<td>{{receptionist.address}}</td>
+<td>{{receptionist.phone}}</td>
+<td>{{receptionist.email}}</td>
+<td><a href="{% url 'cmsapp:adminreceptionistupdate' receptionist.id %}" class="btn btn-link btn-info btn-just-icon edit"> 
+<i class="material-icons">update</i>
+</a>
+<a href="{% url 'cmsapp:adminreceptionistdelete' receptionist.id %}" class="btn btn-link btn-info btn-just-icon delete">
+<i class="material-icons">delete</i>
+</a></td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}
+{% block js %}
+
+{% endblock %}
+

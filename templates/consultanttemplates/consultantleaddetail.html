@@ -1,0 +1,144 @@
+{% extends 'consultanttemplates/consultantbase.html' %}
+{% load static %}
+{% block body %}
+<div>
+<div class="pcoded-content">
+<div class="pcoded-inner-content">
+
+<div class="main-body">
+<div class="page-wrapper">
+
+<div class="page-header">
+<div class="row align-items-end">
+<div class="col-lg-8">
+<div class="page-header-title">
+<div class="d-inline">
+<h4>User Profile</h4>
+<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="page-body">
+
+<div class="row">
+<div class="col-lg-12">
+<div class="cover-profile">
+ <div class="profile-bg-img">
+<img class="profile-bg-img img-fluid" src="{% static 'files/assets/images/user-profile/bg-img1.jpg' %}" alt="bg-img">
+<div class="card-block user-info">
+<div class="col-md-12">
+<div class="media-left">
+<a href="#" class="profile-image">
+<img class="user-img img-radius" src="{{consultantleaddetail.image.url}}" alt="user-img" style="width: 100px; height: 100px;">
+</a>
+</div>
+<div class="media-body row">
+<div class="col-lg-12">
+<div class="user-title">
+<h2>{{consultantleaddetail.name}}</h2>
+</div>
+</div>
+<div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+
+
+<div class="tab-content">
+
+<!-- <div class="tab-pane active" id="personal" role="tabpanel"> -->
+
+<div class="card">
+<div class="card-header">
+<h5 class="card-header-text">About Me</h5>
+
+</div>
+<div class="card-block">
+<div class="view-info">
+<div class="row">
+<div class="col-lg-12">
+<div class="general-info">
+<div class="row">
+<div class="col-lg-12 col-xl-6">
+<div class="table-responsive">
+<table class="table m-0">
+<tbody>
+<tr>
+<th scope="row">Full Name</th>
+<td>{{consultantleaddetail.name}}</td>
+</tr>
+<tr>
+<th scope="row">Phone</th>
+<td>{{consultantleaddetail.phone}}</td>
+</tr>
+<tr>
+<th scope="row">Address</th>
+ <td>{{consultantleaddetail.address}}</td>
+</tr>
+<tr>
+<th scope="row">Email</th>
+<td>{{consultantleaddetail.email}}</td>
+
+</tr>
+<tr>
+<th>Documents</th>
+{% for document in consultantleaddetail.lead.all %}
+<td>{{document.title}},</td>
+{% endfor %}
+
+
+
+</tr>
+
+
+
+</tbody>
+</table>
+</div>
+</div>
+<!-- 
+</div> -->
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="row">
+<div class="col-lg-12">
+<div class="card">
+<div class="card-header">
+<h5 class="card-header-text">Description About Me</h5>
+
+</div>
+<div class="card-block user-desc">
+<div class="view-desc">
+<p>{{consultantleaddetail.about}}</p>
+</div>
+<button class="btn btn-out-dotted btn-info btn-square pull-right" ><a href="{% url 'cmsapp:consultantdocumentcreate' %}">Document add</a></button>
+
+<button class="btn btn-out-dotted btn-info btn-square pull-right" ><a href="{% url 'cmsapp:consultantleadupdate' consultantleaddetail.id %}">Update Lead</a></button>
+
+{% endblock %}
