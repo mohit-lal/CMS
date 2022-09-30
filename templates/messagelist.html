@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h4>Sent Messages</h4>
+
+
+{% for msg in sentlist %}
+	<h4><li style="margin:20px 600px;">to:{{msg.sender}}----{{msg.msg_content}}</li></h4>
+
+{% endfor %}
+
+<h4>Received Messages</h4>
+{% for msg1 in receivedlist %}
+	<h4><li style="margin:20px 600px;">by:{{msg1.sender}}----{{msg1.msg_content}}</li></h4>
+{% endfor %}
+	
+
+{% endblock %}

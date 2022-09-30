@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<h4>Tasks</h4>
+	
+
+
+<!-- <link rel="icon" href="https://colorlib.com/polygon/adminty/files/assets/images/favicon.ico" type="image/x-icon">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="../files/bower_components/bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="../files/assets/icon/themify-icons/themify-icons.css">
+
+<link rel="stylesheet" type="text/css" href="../files/assets/icon/icofont/css/icofont.css">
+
+<link rel="stylesheet" type="text/css" href="../files/assets/icon/feather/css/feather.css">
+
+<link rel="stylesheet" type="text/css" href="../files/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="../files/assets/css/jquery.mCustomScrollbar.css">
+</head> -->
+<!-- <body> -->
+
+<div class="pcoded-content">
+<div class="pcoded-inner-content">
+
+<div class="main-body">
+<div class="page-wrapper">
+
+<div class="page-header">
+<div class="row align-items-end">
+<div class="col-lg-8">
+<div class="page-header-title">
+<div class="d-inline">
+<h4>Task Board</h4>
+<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="page-header-breadcrumb">
+<ul class="breadcrumb-title">
+<li class="breadcrumb-item">
+<a href="index.html"> <i class="feather icon-home"></i> </a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Task</a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Task Board</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+{% for task in tasklist %}
+<div class="page-body">
+<div class="col-sm-6">
+<div class="card card-border-success">
+<div class="card-header">
+<a href="#" class="card-title">{{task.title}} </a>
+<span class="label label-default f-right"> 28 January, 2015 </span>
+</div>
+<div class="card-block">
+<div class="row">
+
+<div class="col-sm-12">
+<p class="task-detail">{{task.content}}</p>
+<p class="task-due"><strong> Due : </strong><strong class="label label-danger">{{task.due_date}}</strong></p>
+</div>
+
+</div>
+
+</div>
+<div class="card-footer">
+<div class="task-list-table">
+<p class="task-due"><strong> Assigned to: </strong><strong class="label label-danger">
+{% for user in task.assigned_to.all %}
+{{user.username}} 
+{% endfor %}
+</strong></p>
+<a href="#!"><i class="icofont icofont-plus"></i></a>
+</div>
+<div class="task-board">
+<div class="dropdown-secondary dropdown">
+<button class="btn btn-primary btn-mini dropdown-toggle waves-effect waves-light" type="button" id="dropdown22" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Normal</button>
+<div class="dropdown-menu" aria-labelledby="dropdown22" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+<a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-danger"></span>Highest priority</a>
+<a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-warning"></span>High priority</a>
+<a class="dropdown-item waves-light waves-effect active" href="#!"><span class="point-marker bg-success"></span>Normal priority</a>
+<a class="dropdown-item waves-light waves-effect" href="#!"><span class="point-marker bg-info"></span>Low priority</a>
+</div>
+
+ </div>
+<div class="dropdown-secondary dropdown">
+<button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown23" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Open</button>
+<div class="dropdown-menu" aria-labelledby="dropdown23" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+<a class="dropdown-item waves-light waves-effect active" href="#!">Open</a>
+<a class="dropdown-item waves-light waves-effect" href="#!">On hold</a>
+<a class="dropdown-item waves-light waves-effect" href="#!">Resolved</a>
+<a class="dropdown-item waves-light waves-effect" href="#!">Closed</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item waves-light waves-effect" href="#!">Dublicate</a>
+<a class="dropdown-item waves-light waves-effect" href="#!">Invalid</a>
+<a class="dropdown-item waves-light waves-effect" href="#!">Wontfix</a>
+</div>
+
+</div>
+
+<div class="dropdown-secondary dropdown">
+<button class="btn btn-default btn-mini dropdown-toggle waves-light b-none txt-muted" type="button" id="dropdown24" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-navigation-menu"></i></button>
+<div class="dropdown-menu" aria-labelledby="dropdown24" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+<a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-alarm"></i> Check in</a>
+<a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-attachment"></i> Attach screenshot</a>
+<a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-spinner-alt-5"></i> Reassign</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-ui-edit"></i> Edit task</a>
+<a class="dropdown-item waves-light waves-effect" href="#!"><i class="icofont icofont-close-line"></i> Remove</a>
+</div>
+
+</div>
+ 
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+{% endfor %}
+
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="styleSelector">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--[if lt IE 10]>
+<div class="ie-warning">
+    <h1>Warning!!</h1>
+    <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+    <div class="iew-container">
+        <ul class="iew-download">
+            <li>
+                <a href="http://www.google.com/chrome/">
+                    <img src="../files/assets/images/browser/chrome.png" alt="Chrome">
+                    <div>Chrome</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.mozilla.org/en-US/firefox/new/">
+                    <img src="../files/assets/images/browser/firefox.png" alt="Firefox">
+                    <div>Firefox</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.opera.com">
+                    <img src="../files/assets/images/browser/opera.png" alt="Opera">
+                    <div>Opera</div>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.apple.com/safari/">
+                    <img src="../files/assets/images/browser/safari.png" alt="Safari">
+                    <div>Safari</div>
+                </a>
+            </li>
+            <li>
+                <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                    <img src="../files/assets/images/browser/ie.png" alt="">
+                    <div>IE (9 & above)</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <p>Sorry for the inconvenience!</p>
+</div>
+<![endif]-->
+
+
+<script type="text/javascript" src="../files/bower_components/jquery/js/jquery.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/popper.js/js/popper.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="../files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+
+<script type="text/javascript" src="../files/bower_components/modernizr/js/modernizr.js"></script>
+<script type="text/javascript" src="../files/bower_components/modernizr/js/css-scrollbars.js"></script>
+
+<script type="text/javascript" src="../files/assets/pages/task-board/task-board.js"></script>
+
+<script type="text/javascript" src="../files/bower_components/i18next/js/i18next.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+<script src="../files/assets/js/pcoded.min.js"></script>
+<script src="../files/assets/js/vartical-layout.min.js"></script>
+<script src="../files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript" src="../files/assets/js/script.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+{% endblock %}

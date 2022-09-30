@@ -1,0 +1,35 @@
+{% extends 'consultanttemplates/consultantbase.html' %}
+{% load static %}
+{% block active10 %}active{% endblock %}
+
+{% block body %}
+<div class="row p-5">
+	<div class="col-8 mx-auto">
+		<form id="he" method="POST"  enctype="multipart/form-data" >
+			{% csrf_token %}
+			{{form.as_p}}
+				<hr>
+			<div class="form-group">
+
+				{{ formset.management_form }}
+				<div class="col-sm-10" >	
+					<table>
+						{% for form1 in formset %}
+							{{form1}}
+						{% endfor %}
+					</table>
+
+				</div>
+
+
+				<div class="j-footer">
+					<br>
+					<br>
+				<button class="btn btn-primary">Send</button>
+				</div>
+			</div>
+		</form>  
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'admintemplates/adminbase.html' %}
+{% load static %}
+{% block active7 %}active{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block body %}
+<div class="dt-responsive table-responsive">
+<table id="datatables" class="table table-striped table-bordered nowrap" >
+<thead>
+<tr>
+<th>S.N</th>
+<th>Name</th>
+<th>Address</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Source</th>
+<th>Visited Date</th>
+<th>Purpose</th>
+<th>Action</th>
+
+
+
+</tr>
+</thead>
+<tbody>
+    {% for visitor in adminvisitorlist %}
+<tr>
+<td>{{forloop.counter}}</td>
+<td>{{visitor.name}}</td>
+<td>{{visitor.address}}</td>
+<td>{{visitor.phone}}</td>
+<td>{{visitor.email}}</td>
+<td>{{visitor.source}}</td>
+<td>{{visitor.visited_date}}</td>
+<td>{{visitor.purpose}}</td>
+<td><a href="{% url 'cmsapp:adminvisitordelete' visitor.id %}" class="btn btn-link btn-info btn-just-icon delete">
+<i class="material-icons">delete</i>
+</a></td>
+
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}
+{% block js %}
+{% endblock %}
+

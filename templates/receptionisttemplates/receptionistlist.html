@@ -1,0 +1,34 @@
+{% extends 'receptionisttemplates/receptionistbase.html' %}
+{% load static %}
+{% block active4 %}active{% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="dt-responsive table-responsive">
+<table id="datatables" class="table table-striped table-bordered nowrap" >
+<thead>
+<tr>
+<th>user</th>
+<th>Name</th>
+<th>Address</th>
+<th>Phone</th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+    {% for reception in receptionistlist %}
+<tr>
+<td>{{reception.user}}</td>
+<td><a href="{% url 'cmsapp:receptionistdetail' reception.id %}">{{reception.name}}</a></td>
+<td>{{reception.address}}</td>
+<td>{{reception.phone}}</td>
+<td>{{reception.email}}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}
+{% block js %}
+{% endblock %}
+

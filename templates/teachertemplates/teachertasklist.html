@@ -1,0 +1,227 @@
+{% extends 'teachertemplates/teacherbase.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static '/files/assets/pages/data-table/css/buttons.dataTables.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'files/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'files/assets/pages/data-table/css/buttons.dataTables.min.css' %}">
+
+<link rel="stylesheet" type="text/css" href="{% static 'files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="#">
+<meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+<meta name="author" content="#">
+
+<link rel="icon" href="https://colorlib.com/polygon/adminty/files/assets/images/favicon.ico" type="image/x-icon">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="{% static '/files/assets/icon/icofont/css/icofont.css' %}">
+
+
+{% endblock %}
+{% block body %}
+<body>
+
+<div class="theme-loader">
+<div class="ball-scale">
+<div class='contain'>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+<div class="ring">
+<div class="frame"></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="pcoded-content">
+<div class="pcoded-inner-content">
+
+<div class="main-body">
+<div class="page-wrapper">
+
+<div class="page-header">
+<div class="row align-items-end">
+<div class="col-lg-8">
+<div class="page-header-title">
+<div class="d-inline">
+<h4>Task List1</h4>
+<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="page-header-breadcrumb">
+<ul class="breadcrumb-title">
+<li class="breadcrumb-item">
+<a href="index.html"> <i class="feather icon-home"></i> </a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Task</a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Task list</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="page-body">
+<div class="row">
+<div class="col-sm-12">
+
+<div class="card">
+<div class="card-header col-md-10">
+<h5>Task List</h5>
+<button class="btn btn-out-dotted btn-info btn-square pull-right" ><a href="{% url 'cmsapp:taskcreate' %}">Add task</a></button>
+</div>
+<div class="card-block task-list">
+<div class="table-responsive">
+<table id="datatables" class="table dt-responsive task-list-table table-striped table-bordered nowrap">
+<thead>
+<tr>
+<th>S.N.</th>
+<th>Task title</th>
+<th>Task Description</th>
+<th>Status</th>
+<th>Priority</th>
+<th>Due Date</th>
+<th>Assigned to</th>
+<th class="text-right">Action</th>
+</tr>
+</thead>
+<tfoot>
+        <tr>
+            <th>S.N.</th>
+			<th>Task title</th>
+			<th>Task Description</th>
+			<th>Status</th>
+			<th>Priority</th>
+			<th>Due Date</th>
+			<th>Assigned to</th>
+			<th class="text-right">Action</th>
+        </tr>
+    </tfoot>
+<tbody class="task-page">
+{% for task in tasklist %}
+<tr>
+<td>{{forloop.counter}}</td>
+<td>{{task.title}}</td>
+<td>{{task.content}}</td>
+<td>{{task.status}}</td>
+<td>{{task.priority}}</td>
+<td>{{task.due_date}}</td>
+<td>{% for user in task.assigned_to.all %}
+{{user.username}} 
+{% endfor %}</td>
+<td>
+<a href="{% url 'cmsapp:taskupdate' task.id %}" class="btn btn-link btn-info btn-just-icon edit"> 
+<i class="material-icons">update</i>
+</a>
+<a data-remote="{% url 'cmsapp:taskdelete' task.id %}" data-toggle="modal" data-target="#clinic-modal" href="{% url 'cmsapp:taskdelete' task.id %}" class="btn btn-link btn-info btn-just-icon delete">
+<i class="material-icons">delete</i>
+</a>
+
+</td> 
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="../files/bower_components/jquery/js/jquery.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/popper.js/js/popper.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="../files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+
+<script type="text/javascript" src="../files/bower_components/modernizr/js/modernizr.js"></script>
+<script type="text/javascript" src="../files/bower_components/modernizr/js/css-scrollbars.js"></script>
+<script type="text/javascript" src="../files/bower_components/i18next/js/i18next.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
+<script type="text/javascript" src="../files/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+<script src="../files/assets/js/pcoded.min.js"></script>
+<script src="../files/assets/js/vartical-layout.min.js"></script>
+<script src="../files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="../files/assets/js/script.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+<script type="text/javascript">
+    window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 1000);
+</script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#datatables').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search records",
+        }
+
+    });
+
+
+    var table = $('#datatables').DataTable();
+
+    $('.card .material-datatables label').addClass('form-group');
+});
+
+
+
+
+{% endblock %}

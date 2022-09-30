@@ -1,0 +1,122 @@
+{% extends 'consultanttemplates/consultantbase.html' %}
+{% load static %}
+{% block active8 %}active{% endblock %}
+{% block css %}
+
+
+{% endblock %}
+{% block body %}
+
+
+
+<div class="main-body">
+<div class="page-wrapper">
+
+<div class="page-header">
+<div class="row align-items-end">
+<div class="col-lg-8">
+<div class="page-header-title">
+<div class="d-inline">
+<h4>Task List1</h4>
+<span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="page-header-breadcrumb">
+<ul class="breadcrumb-title">
+<li class="breadcrumb-item">
+<a href="index.html"> <i class="feather icon-home"></i> </a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Appointment</a>
+</li>
+<li class="breadcrumb-item"><a href="#!">Appointment list</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div class="row">
+<div class="col-sm-12">
+
+<div class="card">
+<div class="card-header col-md-10">
+<h5>Task List</h5>
+<button class="btn btn-out-dotted btn-info btn-square pull-right" ><a href="{% url 'cmsapp:consultantappointmentcreate' %}">Add Appointment</a></button>
+</div>
+<div class="card-block task-list">
+<div class="table-responsive">
+<table id="datatables" class="table dt-responsive task-list-table table-striped table-bordered nowrap">
+<thead>
+<tr>
+<th>S.N.</th>
+<th>Name</th>
+<th>Phone</th>
+<th>Subject</th>
+<th>Party2</th>
+<th>Date</th>
+<th class="text-right">Action</th>
+</tr>
+</thead>
+<tfoot>
+        <tr>
+            <th>S.N.</th>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Subject</th>
+			<th>Party2</th>
+			<th>Date</th>
+			<th class="text-right">Action</th>
+        </tr>
+    </tfoot>
+<tbody class="task-page">
+{% for appointment in consultantappointmentlist %}
+<tr>
+<td>{{forloop.counter}}</td>
+<td>{{appointment.party1}}</td>
+<td>{{appointment.phone}}</td>
+<td>{{appointment.subject}}</td>
+<td>{{appointment.party2}}</td>
+<td>{{appointment.date}}</td>
+<td>
+<a href="{% url 'cmsapp:consultantappointmentupdate' appointment.id %}" class="btn btn-link btn-info btn-just-icon edit"> 
+<i class="material-icons">update</i>
+</a>
+<!-- <a data-remote="{% url 'cmsapp:consultantappointmentdelete' appointment.id %}" data-toggle="modal" data-target="#clinic-modal" href="{% url 'cmsapp:appointmentdelete' appointment.id %}" class="btn btn-link btn-info btn-just-icon delete">
+<i class="material-icons">delete</i>
+</a> -->
+
+</td> 
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+{% block js %}
+
+
+
+
+{% endblock %}

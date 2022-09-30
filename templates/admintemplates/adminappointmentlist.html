@@ -1,0 +1,76 @@
+{% extends 'admintemplates/adminbase.html' %}
+{% load static %}
+{% block active9 %}active{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block body %}
+
+<div class="col-sm-12">
+
+<div class="card">
+<div class="card-header col-md-10">
+<h5>Task List</h5>
+<button class="btn btn-out-dotted btn-info btn-square pull-right" ><a href="{% url 'cmsapp:appointmentcreate' %}">Add Appointment</a></button>
+</div>
+<div class="card-block task-list">
+<div class="table-responsive">
+<table id="datatables" class="table dt-responsive task-list-table table-striped table-bordered nowrap">
+<thead>
+<tr>
+<th>S.N.</th>
+<th>Party1</th>
+<th>Phone</th>
+<th>Subject</th>
+<th>Party2</th>
+<th>Date</th>
+<th class="text-right">Action</th>
+</tr>
+</thead>
+<tfoot>
+        <tr>
+            <th>S.N.</th>
+			<th>Task title</th>
+			<th>Phone</th>
+			<th>Subject</th>
+			<th>Party2</th>
+			<th>Date</th>
+			<th class="text-right">Action</th>
+        </tr>
+    </tfoot>
+<tbody class="task-page">
+{% for appointment in adminappointmentlist %}
+<tr>
+<td>{{forloop.counter}}</td>
+<td>{{appointment.party1}}</td>
+<td>{{appointment.phone}}</td>
+<td>{{appointment.subject}}</td>
+<td>{{appointment.party2}}</td>
+<td>{{appointment.date}}</td>
+<td>
+<a href="{% url 'cmsapp:appointmentupdate' appointment.id %}" class="btn btn-link btn-info btn-just-icon edit"> 
+<i class="material-icons">update</i>
+</a>
+<a href="{% url 'cmsapp:taskdelete' appointment.id %}" class="btn btn-link btn-info btn-just-icon delete">
+<i class="material-icons">delete</i>
+</a>
+
+</td> 
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+{% endblock %}
+{% block js %}
+
+
+{% endblock %}
